@@ -6,6 +6,7 @@
 body {
   background: hsl(240, 3%, 7%);
   font-size: clamp(0.5rem, 2.5vmin, 1.5rem);
+  overflow-x: hidden;
 }
 
 main {
@@ -23,6 +24,7 @@ main {
 
 /* HEADER */
 .header {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +38,12 @@ main {
   font-size: 2.4em;
   font-weight: 700;
   letter-spacing: 4px;
+}
+
+.info-icon {
+  color: #d7dadc;
+  cursor: pointer;
+  font-size: 30px;
 }
 
 .question-icon,
@@ -206,4 +214,39 @@ main {
 
 .alert-message.hide {
   opacity: 0;
+}
+
+.info-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.info-content {
+  background: #1a1a1b;
+  padding: 1rem 2rem;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 0.3rem;
+}
+
+.info-content p {
+  margin: 1rem 0;
+}
+
+.info-icon {
+  position: absolute;
+  right: 0;
+}
+
+.exit-icon {
+  cursor: pointer;
 }

@@ -8,6 +8,8 @@ import { targetWords } from "./targetWords";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
 import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
+import Info from "./Info";
+import { AnimatePresence } from "framer-motion";
 
 export default function App() {
   const [wordle, setWordle] = useState(false);
@@ -17,9 +19,10 @@ export default function App() {
   const [activeTiles, setActiveTiles] = useState([]);
   const [nextTile, setNextTile] = useState(getFirstTile());
   const [guessTries, setGuessTries] = useState(0);
-  const [lastFiveTiles, setLastFiveTiles] = useState([]);
+  const [showInfo, setShowInfo] = useState(true);
 
   console.log(targetWord);
+  console.log(showInfo);
   // console.log(tiles);
   // console.log(tiles);
 
@@ -266,14 +269,21 @@ export default function App() {
     );
   }
 
+  function handleShowInfo() {
+    setShowInfo(!showInfo);
+  }
+
   return (
     <main tabIndex="0" onKeyDown={!wordle ? handleKeyDown : null}>
       {wordle && <Confetti />}
       <div className="content">
         <Alert />
-        <Header />
+        <Header handleShowInfo={handleShowInfo} />
         <Boxes allTiles={tiles} />
         <Keyboard handleMouseClick={!wordle ? handleMouseClick : null} />
+        <AnimatePresence>
+          {showInfo && <Info handleShowInfo={handleShowInfo} />}
+        </AnimatePresence>
       </div>
     </main>
   );
